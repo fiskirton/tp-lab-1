@@ -18,13 +18,15 @@ void split(char ***result, int *N, char *buf, char ch){
 	}
 
 	char* tmp = new char[len+1];
-
+    *(*result) = tmp;
 	for (int i = 0; i < len; i++){
 		tmp[i] = buf[i];
 		if (tmp[i] == ch){
 			*(tmp + i) = '\0';
 			*(*result + n) = tmp + i + 1;
 			n++;
+		}else if(i==len-1){
+            *(tmp+i+1)='\0';
 		}
 	}
 }
