@@ -2,6 +2,24 @@
 #include <iostream>
 #include <string.h>
 using namespace std;
+
+char *strreverse(char *str){
+    if (!str || ! *str)
+        return str;
+
+    int i = strlen(str) - 1, j = 0;
+
+    char ch;
+    while (i > j){
+        ch = str[i];
+        str[i] = str[j];
+        str[j] = ch;
+        i--;
+        j++;
+    }
+    return str;
+}
+
 char * sum(char *x, char *y){
 
     unsigned long i = 0,
@@ -33,6 +51,6 @@ char * sum(char *x, char *y){
     }
 
     *(res+i)='\0';
-    strrev(res);
+    strreverse(res);
     return res;
 }
