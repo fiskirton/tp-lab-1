@@ -29,7 +29,7 @@ char * sum(char *x, char *y){
     unsigned short tmp,
                    sum = 0;
 
-    char *res = (char*)malloc((maxL+1) * sizeof(char));
+    char *res = (char*)malloc((maxL+2) * sizeof(char));
 
     while(i<yLen||i<xLen){
         if ((i<xLen)&&(i<yLen)){
