@@ -3,30 +3,42 @@
 #include <new>
 void split(char ***result, int *N, char *buf, char ch){
 	const int len = strlen(buf);
-	int n = 1;
 	*N = 1;
 	for (int i = 0; i < len; i++){
 		if (buf[i] == ch){
 			(*N)++;
 		}
 	}
-	*result = new char*[*N+1];
-
+	*result = new char*[*N];
 	if (*N==1){
         *(*result) = buf;
         return;
 	}
 
-	char* tmp = new char[len+1];
-    *(*result) = tmp;
-	for (int i = 0; i < len; i++){
-		tmp[i] = buf[i];
-		if (tmp[i] == ch){
-			*(tmp + i) = '\0';
-			*(*result + n) = tmp + i + 1;
-			n++;
-		}else if(i==len-1){
-            *(tmp+i+1)='\0';
-		}
-	}
+   int prevSeparatorIndex = 0; // Индекс предыдущего разделителя
+   int currentSubString = 0; // Индекс текущей обрабатываемой подстроки
+
+   for(int i = 0; i < len; i++)
+   {
+       if(buf[i] == ch)
+       {
+           // Выделяем память под подстроку и символ окончания
+          *(*result + currentSubString) = new char[i - prevSeparatorIndex + 1];
+           // Копируем из исходной строки элемент от prevSeparatorIndex до i
+          memcpy(*(*result+currentSubString), &buf[prevSeparatorIndex], i);
+          // Устанавливаем символ окончания строки
+          *(*(*result + currentSubString)+(i - prevSeparatorIndex)) = '\0';
+          prevSeparatorIndex = i + 1;
+          currentSubString++;
+       }
+       else if(i == len - 1)
+       {
+          // Выделяем память под подстроку и символ окончания
+          *(*result + currentSubString) = new char[i - prevSeparatorIndex + 1];
+          // Копируем из исходной строки элемент от prevSeparatorIndex до i
+          memcpy(*(*result+currentSubString), &buf[prevSeparatorIndex], i);
+          // Устанавливаем символ окончания строки
+          *(*(*result + currentSubString)+(i - prevSeparatorIndex + 1)) = '\0';
+       }
+   }
 }
