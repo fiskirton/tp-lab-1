@@ -1,7 +1,6 @@
 #include "task4.h"
-#include <string.h>
+#include <cstring>
 #include <new>
-#include <stdio.h>
 using namespace std;
 
 char *strreverse(char *str)
