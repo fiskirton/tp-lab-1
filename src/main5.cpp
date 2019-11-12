@@ -3,15 +3,15 @@
 using namespace std;
 int main()
 {
+    char sourceString[] = "qwe qwe qwe";
     char **result = nullptr;
-    int N = 0;
-    char buf[] = "qwe asd asfa svds fdk k";
-    split(&result, &N, buf, ' ');
-
-    // Вывод на экран
-    for(int i = 0; i < N; i++) cout << result[i] << endl;
-    // Отчищаем память
-    for(int i = 0; i < N; i++) delete [] result[i];
+    int size = 1;
+    split(&result, &size, sourceString, ' ');
+	// Вывод на экран
+    for(size_t i = 0; i < size; i++) cout << result[i] << endl;
+	// Очищаем память
+    for (size_t i = 0; i < size; i++) delete[] result[i];
     delete[] result;
     return 0;
 }
+
