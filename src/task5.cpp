@@ -1,7 +1,10 @@
+#include "task5.h"
 #include <iostream>
-#include <cstring>
+#include <string.h>
 using namespace std;
+
 void split(char ***result, int *N, char *buf, char ch){
+
     if(!buf) return;
     const int len = strlen(buf);
     *N = 1;
@@ -11,39 +14,19 @@ void split(char ***result, int *N, char *buf, char ch){
         }
     }
 
-    *result = new char*[*N];
-    if (*N==1){
-        *(result)[0] = new char[len];
-        strcpy(*(result)[0], buf);
-        return;
-    }
-
-    int prevSeparatorIndex = 0;  // Индекс предыдущего разделителя
-    int currentSubString = 0; // Индекс текущей обрабатываемой подстроки
-
-    for(int i = 0; i < len; i++)
-    {
-        if(buf[i] == ch)
-        {
-            // Выделяем память под подстроку и символ окончания
-            *(*result + currentSubString) = new char[i - prevSeparatorIndex + 1];
-            // Копируем из исходной строки элемент от prevSeparatorIndex до i
-            if(!*(*result+currentSubString)) return;
-            strcpy(*(*result+currentSubString), &buf[prevSeparatorIndex]);
-            // Устанавливаем символ окончания строки
-            *(*(*result + currentSubString)+(i - prevSeparatorIndex)) = '\0';
-            prevSeparatorIndex = i + 1;
-            currentSubString++;
-        }
-        else if(i == len - 1)
-        {
-            // Выделяем память под подстроку и символ окончания
-            *(*result + currentSubString) = new char[i - prevSeparatorIndex + 1];
-            // Копируем из исходной строки элемент от prevSeparatorIndex до i
-            if(!*(*result+currentSubString)) return;
-            strcpy(*(*result+currentSubString), &buf[prevSeparatorIndex]);
-            // Устанавливаем символ окончания строки
-            *(*(*result + currentSubString)+(i - prevSeparatorIndex + 1)) = '\0';
-        }
-    }
+	char *str = new char[len + 1];
+	*result = new char*[*N];
+	(*result)[0] = str;
+	int i = 0;
+	int splitIndex = 1;
+	while (i!=len){
+		str[i] = buf[i];
+		if (buf[i] == ch){
+			(*result)[splitIndex] = str + (i + 1);
+			str[i] = '\0';
+			++splitIndex;
+		}
+		++i;
+	}
+	str[len] = '\0';
 }
