@@ -1,14 +1,17 @@
-#include "task5.h"
 #include <iostream>
+#include "task5.h"
+
 using namespace std;
+
 int main()
 {
-    char sourceString[] = "qwe qwe qwe";
-    char **result = nullptr;
-    int size = 1;
-    split(&result, &size, sourceString, ' ');
-	// Вывод на экран
-    for(size_t i = 0; i < size; i++) cout << result[i] << endl;
-    return 0;
+	char ch = ';';
+	int N = 0;
+	char** result;
+	char buf[] = "abc;defey;123";
+	split(&result, &N, buf, ch);
+	cout << N << endl;
+	for (int i = 0; i < N; i++) {
+		cout << result[i] << endl;
+	}
 }
-

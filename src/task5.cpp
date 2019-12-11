@@ -1,32 +1,31 @@
+#include <cstring>
 #include "task5.h"
-#include <iostream>
-#include <string.h>
-using namespace std;
 
-void split(char ***result, int *N, char *buf, char ch){
 
-    if(!buf) return;
-    const int len = strlen(buf);
-    *N = 1;
-    for (int i = 0; i < len; i++){
-        if (buf[i] == ch){
-            (*N)++;
-        }
-    }
-
-	char *str = new char[len + 1];
-	*result = new char*[*N];
-	(*result)[0] = str;
-	int i = 0;
-	int splitIndex = 1;
-	while (i!=len){
-		str[i] = buf[i];
+void split(char*** result, int* N, char* buf, char ch)
+{
+	int len = strlen(buf);
+	for (int i = 0; i < len; i++){
 		if (buf[i] == ch){
-			(*result)[splitIndex] = str + (i + 1);
-			str[i] = '\0';
-			++splitIndex;
+			(*N)++;
 		}
-		++i;
 	}
-	str[len] = '\0';
-}
+	(*N)++;
+	*result = new char* [*N];
+	char* temp_str = new char[len];
+	int cnt = 0;
+	int substr = 0;
+	for (int i = 0; i < len+1; i++) {
+		if ((buf[i] != ch) && (buf[i] != '\0')) {
+			temp_str[cnt] = buf[i];
+			cnt++;
+		}
+		if ((buf[i] == ch) || (buf[i] == '\0')) {
+			temp_str[cnt] = '\0';
+			*(*result + substr) = temp_str;
+			temp_str = new char[len];
+			substr++;
+			cnt = 0;
+		}
+	}
+} 
