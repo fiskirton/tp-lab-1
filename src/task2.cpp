@@ -9,7 +9,7 @@ bool checkPrime(unsigned int value){
 }
 unsigned long long nPrime(unsigned n){
     if (n<1)return 0;
-    vector<unsigned long> arr;
+    vector<unsigned long long> arr;
     arr.push_back(2);
     for (unsigned long i=3;arr.size()<n;i++){
         unsigned long j=0;
