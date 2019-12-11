@@ -45,13 +45,13 @@ char * sum(char *x, char *y)
         }
 
         tmp = int(sum / 10);
-        *(res+i)=(sum % 10) - '0';
+        *(res+i)=(sum % 10) + '0';
         i++;
     }
 
     if(tmp)
     {
-        *(res+i) = tmp - '0';
+        *(res+i) = tmp + '0';
         i++;
     }
 
