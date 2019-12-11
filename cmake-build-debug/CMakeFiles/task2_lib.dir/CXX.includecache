@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/task2.h
+
+/home/fiskirton/tp-lab-1/src/task2.cpp
+task2.h
+/home/fiskirton/tp-lab-1/src/task2.h
+vector
+-
+

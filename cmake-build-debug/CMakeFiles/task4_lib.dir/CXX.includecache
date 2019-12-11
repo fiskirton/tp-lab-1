@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/task4.h
+
+/home/fiskirton/tp-lab-1/src/task4.cpp
+task4.h
+/home/fiskirton/tp-lab-1/src/task4.h
+cstring
+-
+new
+-
+

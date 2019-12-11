@@ -1,0 +1,1 @@
+/usr/bin/c++  -g -Wall -g  -rdynamic CMakeFiles/tests.dir/test/tests.cpp.o  -o tests ext/gtest-1.8.0/googlemock/gtest/libgtest.a ext/gtest-1.8.0/googlemock/gtest/libgtest_main.a libtask1_lib.a libtask2_lib.a libtask3_lib.a libtask4_lib.a libtask5_lib.a ext/gtest-1.8.0/googlemock/gtest/libgtest.a -lpthread 

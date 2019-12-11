@@ -15,8 +15,11 @@ set(CMAKE_CXX_FLAGS "-g -Wall")
 #----------------------------------------------------------------------------
 set(COMMON_INCLUDES ${PROJECT_SOURCE_DIR}/include)
 include_directories(${COMMON_INCLUDES})
+include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
+
 file(GLOB TEST_SRC_FILES ${PROJECT_SOURCE_DIR}/test/*.cpp)
 
+add_subdirectory(ext/gtest-1.8.0)
 
 set(SRC_FILES1 ${PROJECT_SOURCE_DIR}/src/task1.cpp)
 set(SRC_FILES2 ${PROJECT_SOURCE_DIR}/src/task2.cpp)
@@ -38,6 +41,11 @@ add_executable(task2 ${PROJECT_SOURCE_DIR}/src/main2.cpp)
 add_executable(task3 ${PROJECT_SOURCE_DIR}/src/main3.cpp)
 add_executable(task4 ${PROJECT_SOURCE_DIR}/src/main4.cpp)
 add_executable(task5 ${PROJECT_SOURCE_DIR}/src/main5.cpp)
+add_executable(tests ${TEST_SRC_FILES})
+
+target_link_libraries(tests gtest gtest_main)
+target_link_libraries(tests task1_lib task2_lib task3_lib task4_lib task5_lib)
+
 
 target_link_libraries(task1 task1_lib)
 target_link_libraries(task2 task2_lib)
@@ -54,7 +62,6 @@ option(BUILD_TESTS "Build all tests." OFF) # Makes boolean 'test' available.
 
 if (BUILD_TESTS)
   # This adds another subdirectory, which has 'project(gtest)'.
-  add_subdirectory(ext/gtest-1.8.0)
 
   enable_testing()
 

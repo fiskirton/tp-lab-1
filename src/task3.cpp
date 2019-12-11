@@ -1,22 +1,25 @@
-#include "task3.h"
-#include <math.h>
-unsigned long long sumPrime(unsigned int hbound) //20
-{
-    if (hbound<3)return 0;
-    unsigned long long i, j, sum = 2;//sum=2 тк в данной реализации алгоритма 2*i+1 не учитывает четные числа (2-простое число)
-    hbound=round((hbound)/2);
-    char a[hbound];
+unsigned long long sumPrime(unsigned int hbound){
+    unsigned int array_size = hbound + 1;
+    auto * array = new unsigned int[array_size];
+    unsigned long long int sum_counter = 0;
+    if (array_size > 0){
+        array[1] = 0;
+    }
+    for (int k = 0; k < array_size; ++k) {
+        array[k] = k;
+    }
+    for (int i = 2; i*i < array_size; ++i) {
+        if (array[i] != 0) {
+            for (unsigned int k = i * i; k < array_size; k += i) {
+                array[k] = 0;
+            }
+        }
+    }
+    for (unsigned int j = 2; j < array_size; ++j) {
+        if (array[j] != 0){
+            sum_counter += array[j];
+        }
+    }
 
-    for (i=1; i<hbound; i++)
-        a[i]=1;
-
-
-    for(i=1; 2*i*(i+1)<hbound; i++)
-        for(j=i; j<=(hbound-i)/(2*i+1); j++)
-            a[2*i*j+i+j]=0;
-
-    for(i=0; i<hbound; i++)
-        if(a[i])
-            sum+=(2*i+1);
-    return sum;
+    return sum_counter;
 }

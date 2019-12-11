@@ -67,6 +67,7 @@ TEST(lab1,task3_2)
 {
    unsigned long long res=sumPrime(10);
    unsigned long long expected=17;
+
    EXPECT_EQ(expected,res);
 }
 
